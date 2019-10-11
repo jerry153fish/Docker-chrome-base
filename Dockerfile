@@ -69,4 +69,6 @@ RUN chmod +x /usr/local/bin/dumb-init
 
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
 
+ENV DOCKER=true
+
 RUN apt-get -qq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
