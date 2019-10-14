@@ -57,18 +57,19 @@ RUN apt-get -qq update && \
   lsb-release \
   xdg-utils \
   wget \
+  unzip \
   xvfb \
   openjdk-11-jdk \
   curl &&\
   apt-get -y -qq install build-essential &&\
   fc-cache -f -v
 
-# Bake-in an init system to avoid the zombie apocalypse
-ADD https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64 /usr/local/bin/dumb-init
-RUN chmod +x /usr/local/bin/dumb-init
-
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
-
-ENV DOCKER=true
-
+RUN useradd -ms /bin/bash javauser
+RUN mkdir /chrome
+RUN ADD https://storage.googleapis.com/chromium-browser-snapshots/Linux_x64/662092/chrome-linux.zip /chrome
+RUN ADD https://chromedriver.storage.googleapis.com/76.0.3809.12/chromedriver_linux64.zip /chrome
+RUN unzip /chrome/chrome-linux.zip -d /chrome
+RUN unzip /chrome/chromedriver_linux64.zip -d /chrome
+RUN chown -R javauser:javauser /chrome
 RUN apt-get -qq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
