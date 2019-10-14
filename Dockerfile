@@ -67,8 +67,8 @@ RUN apt-get -qq update && \
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
 RUN useradd -ms /bin/bash javauser
 RUN mkdir /chrome
-RUN ADD https://storage.googleapis.com/chromium-browser-snapshots/Linux_x64/662092/chrome-linux.zip /chrome
-RUN ADD https://chromedriver.storage.googleapis.com/76.0.3809.12/chromedriver_linux64.zip /chrome
+ADD https://storage.googleapis.com/chromium-browser-snapshots/Linux_x64/662092/chrome-linux.zip /chrome
+ADD https://chromedriver.storage.googleapis.com/76.0.3809.12/chromedriver_linux64.zip /chrome
 RUN unzip /chrome/chrome-linux.zip -d /chrome
 RUN unzip /chrome/chromedriver_linux64.zip -d /chrome
 RUN chown -R javauser:javauser /chrome
