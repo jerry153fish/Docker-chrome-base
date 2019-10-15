@@ -65,6 +65,7 @@ RUN apt-get -qq update && \
   fc-cache -f -v
 
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
+ENV RUN_DOCKER=true
 RUN useradd -ms /bin/bash javauser
 RUN mkdir /chrome
 ADD https://storage.googleapis.com/chromium-browser-snapshots/Linux_x64/662092/chrome-linux.zip /chrome
