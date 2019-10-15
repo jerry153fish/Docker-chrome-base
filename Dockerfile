@@ -72,4 +72,5 @@ ADD https://chromedriver.storage.googleapis.com/76.0.3809.12/chromedriver_linux6
 RUN unzip /chrome/chrome-linux.zip -d /chrome
 RUN unzip /chrome/chromedriver_linux64.zip -d /chrome
 RUN chown -R javauser:javauser /chrome
-RUN apt-get -qq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get -qq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
+RUN rm /chrome/*.zip
